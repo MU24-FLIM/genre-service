@@ -1,5 +1,6 @@
 package com.example.genre;
 
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -24,11 +25,11 @@ public class GenreController {
     }
 
     @PostMapping
-    public Genre createGenre(@RequestBody Genre genre){
+    public Genre createGenre(@RequestBody @Valid Genre genre){
         return genreRepo.save(genre);
     }
     @PutMapping("/{id}")
-    public ResponseEntity<Genre> updateGenre(@PathVariable Long id, @RequestBody Genre newGenre){
+    public ResponseEntity<Genre> updateGenre(@PathVariable Long id, @RequestBody @Valid Genre newGenre){
         Optional<Genre> optionalGenre = genreRepo.findById(id);
         if(!optionalGenre.isPresent()){
             return ResponseEntity.notFound().build();
