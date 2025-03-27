@@ -43,7 +43,6 @@ public class GenreController {
 
     @GetMapping
     public Flux<Genre> getAllGenres(){
-        System.out.println("all genres");
         return Flux.fromIterable(genreRepo.findAll());
     }
 
@@ -58,7 +57,6 @@ public class GenreController {
     public ResponseEntity<Void> deleteGenre(@PathVariable Long id){
         if(genreRepo.existsById(id)){
             genreRepo.deleteById(id);
-            System.out.println("deleted");
             return ResponseEntity.ok().build();
         }else{
             return ResponseEntity.notFound().build();
