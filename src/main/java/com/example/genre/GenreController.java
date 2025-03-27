@@ -83,4 +83,9 @@ public class GenreController {
                 }).orElseGet(() -> Mono.just(ResponseEntity.notFound().build()));
     }
 
+    @GetMapping("/exists/{id}")
+    public boolean genreExists(@PathVariable Long id) {
+        return genreRepo.existsById(id);
+    }
+
 }
