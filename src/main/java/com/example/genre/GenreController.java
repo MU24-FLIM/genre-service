@@ -53,6 +53,7 @@ public class GenreController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+
     @DeleteMapping("{id}")
     public ResponseEntity<Void> deleteGenre(@PathVariable Long id){
         if(genreRepo.existsById(id)){
