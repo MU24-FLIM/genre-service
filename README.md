@@ -9,7 +9,7 @@
 - DB_URL - URL till din databas tillexempel: jdbc:mysql://localhost:3306/genredb
 - DB_USER - ditt användarnamn
 - DB_PASSWORD - ditt lösenord
-- WEB_CLIENT_URL - URL till din web-client, movie-client: http://localhost:8082
+- WEB_CLIENT_URL - URL till din web-client, movie-client: http://localhost:8080
 
 ````json
 { 
