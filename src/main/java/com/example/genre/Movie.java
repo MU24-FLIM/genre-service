@@ -1,5 +1,7 @@
 package com.example.genre;
 
+
+//POJO fil för att kunna få in movie
 public class Movie {
 
     private Long id;

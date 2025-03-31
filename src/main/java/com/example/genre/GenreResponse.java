@@ -2,6 +2,8 @@ package com.example.genre;
 
 import java.util.List;
 
+
+//Kopplar ihop min Movie och Genre
 public class GenreResponse {
 
     private Genre genre;

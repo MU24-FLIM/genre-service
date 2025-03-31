@@ -1,12 +1,11 @@
 package com.example.genre;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+//eftersom vi har en SQL fil inlagd för att slippa göra nya databaser, har vi unique för att inte skapa samma för varje start
+@Table(name = "genre", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
 @Entity
 public class Genre {
 

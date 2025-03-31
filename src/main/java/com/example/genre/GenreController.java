@@ -24,10 +24,14 @@ public class GenreController {
         this.genreRepo = genreRepo;
     }
 
+    //För att göra en ny Genre
     @PostMapping
     public Genre createGenre(@RequestBody @Valid Genre genre){
         return genreRepo.save(genre);
     }
+
+
+    //För att uppdatera en Genre med ett id
     @PutMapping("/{id}")
     public ResponseEntity<Genre> updateGenre(@PathVariable Long id, @RequestBody @Valid Genre newGenre){
         Optional<Genre> optionalGenre = genreRepo.findById(id);
@@ -41,11 +45,14 @@ public class GenreController {
         return ResponseEntity.ok(updatedGenre);
     }
 
+
+    //För att hitta all inlagda Genres
     @GetMapping
     public Flux<Genre> getAllGenres(){
         return Flux.fromIterable(genreRepo.findAll());
     }
 
+    //För hitta en Genre med ett id
     @GetMapping("/{id}")
     public ResponseEntity<Mono<Genre>> getGenreById(@PathVariable Long id){
         return genreRepo.findById(id)
@@ -54,6 +61,7 @@ public class GenreController {
     }
 
 
+    //För att tabort en Genre med ett id
     @DeleteMapping("{id}")
     public ResponseEntity<Void> deleteGenre(@PathVariable Long id){
         if(genreRepo.existsById(id)){
@@ -65,7 +73,7 @@ public class GenreController {
     }
 
 
-    //movies/{id} fredriks endpoints
+    //För att hitta alla filmer som är sparade under en specifik Genre med hjälp att Genre Id
     @GetMapping("/{id}/movies")
     public Mono<ResponseEntity<GenreResponse>> getMoviesByTheGenreId(@PathVariable Long id){
         return genreRepo.findById(id)
@@ -84,6 +92,7 @@ public class GenreController {
                 }).orElseGet(() -> Mono.just(ResponseEntity.notFound().build()));
     }
 
+    //En metod för att hjälpa Fredriks app att inte kunna lägga till filmer till en Genre som inte finns
     @GetMapping("/exists/{id}")
     public boolean genreExists(@PathVariable Long id) {
         return genreRepo.existsById(id);
